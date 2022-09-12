@@ -1,0 +1,11 @@
+USER TRANSLATION|||LA TRADUZION DELL'UTANT
+Here the Javascript code available to be inserted in your web page to implement user translation functionalities.|||Que al codice Javascrept desponeble par esser inserit nella to pagena webbe par implementer funzionalite de traduzion.
+Please check the context of implementation for each of the functions.|||Par favor verifica al contest de implementazion da tot le funzion.
+these functionalities require jQuery|||queste funzion al richiedon jQuery
+Example:|||Esampel:
+Available user-contributed translations:|||Traduzion dall'utant desponibel:
+Bolognese dialect:|||Dialat Bolognese:
+Code:|||Al codice:
+Usage example:|||Esampel de us:
+Disclaimer|||Tot a post
+MIT License.|||En licianza MIT.

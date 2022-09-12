@@ -1,0 +1,148 @@
+/**
+ * Copyright (c) 2021, 2024, 5 Mode and other contributors
+ * Released under the MIT license
+ *
+ * This file is part of Squeejs.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ * and associated documentation files (the "Software"), to deal in the Software 
+ * without restriction, including without limitation the rights to use, copy, modify, merge, publish, 
+ * distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies or 
+ * substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN 
+ * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * squeejs.css
+ * 
+ * Squeejs style sheet.
+ *
+ * @author Daniele Bonini <my25mb@aol.com>
+ * @copyrights (c) 2016, 2024, 5 Mode    
+ * @license https://opensource.org/licenses/BSD-3-Clause 
+ */
+
+#SQJSappMenu {
+  position: absolute;
+  background-color:#ffffff;
+  border: 2px solid darkgray;
+  margin:0;
+  padding:0;
+  width:380px;
+  height:fit-content;
+  display: none;
+  font-family: Arial,Sans,Verdana;
+  font-size:12px;
+  font-weight:600;
+  z-index: 99997;
+}
+#SQJSappMenuIco {
+  float:left; 
+  position:relative; 
+  t-op:40px; 
+  le-ft:30px;
+  margin:0; 
+  padding:0;
+  cursor: pointer; 
+  z-index: 99999;
+}
+.SQJSbanner-absolute {
+  position:absolute;
+  float:left;
+  margin-top:35px;
+  width:472px;
+  height:62px;
+  z-index:99990;  
+}
+.SQJSbanner-fixed {
+  position:fixed;
+  float:left;
+  margin-top:35px;
+  width:472px;
+  height:62px;
+  z-index:99990;  
+}
+.SQJSbanner-relative {
+  position:relative;
+  float:left;
+  margin-top:35px;
+  width:472px;
+  height:62px;
+  z-index:99990;  
+}
+.SQJSclose-button {
+  position:absolute; 
+  background: transparent;
+  border: 0;
+  color: gray;
+  cursor: pointer;
+}  
+.SQJSclose-button :hover {
+  color: black;
+}
+.SQJSfooterCont {
+  position: relative; 
+  left:-10px;
+  width: 100%; 
+  border: 1px solid #C2DBF2; 
+  padding: 7px; 
+  background: white; 
+  opacity: 0.4;
+  border:0px solid green;
+  z-index: 99998;
+}
+.SQJSfooter {
+  position: relative;
+  top:-32px;
+  width: fit-content; 
+  margin:auto;
+  margin-bottom:0;
+  padding: 7px; 
+  padding-left: 0px; 
+  color:black; 
+  font-family: Arial,Sans,Vardana;
+  border:0px solid red;
+  font-size: 12px;
+  z-index: 99999;
+}
+#SQJSuserTransMenu {
+  position: absolute;
+  background-color:#ffffff;
+  border: 2px solid darkgray;
+  margin:0;
+  padding:15px;
+  width:370px;
+  height:fit-content;
+  display: none;
+  font-family: Arial,Sans,Verdana;
+  font-size:12px;
+  font-weight:600;
+  z-index: 99997;
+}
+#SQJSuserTransMenuIco {
+  float:left; 
+  position:relative; 
+  t-op:40px; 
+  le-ft:30px;
+  margin:0; 
+  padding:0;
+  cursor: pointer; 
+  z-index: 99999;
+}
+#SQJSuserTransTB {
+  width:370px;
+  height:400px;
+  resize:none;
+}
+#SQJSuserTransBUT {
+  float:right;
+  margin-top:10px;
+  padding:0;
+}
