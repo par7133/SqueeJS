@@ -112,6 +112,34 @@
   font-size: 12px;
   z-index: 99999;
 }
+#SQJSsidebarCall {
+  position:fixed; 
+  top:0px; 
+  left:1px; 
+  clear:both; 
+  float:left; 
+  width:5px; 
+  height:100%; 
+  min-height:1100px; 
+  text-align:center; 
+  border-right:1px solid #2c2f34; 
+  z-index:1;
+}
+#SQJSsidebar {
+  position:fixed; 
+  left:6px; 
+  top:0px; 
+  clear:both; 
+  background-color:#FFFFFF; 
+  padding:8px; 
+  width:25%; 
+  height:100%; 
+  text-align:center; 
+  border-right:1px solid #2c2f34; 
+  border-bottom:1px solid #2c2f34;
+  display:none; 
+  z-index:91;
+}
 #SQJSuserTransMenu {
   position: absolute;
   background-color:#ffffff;

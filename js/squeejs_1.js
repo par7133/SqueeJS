@@ -24,7 +24,7 @@
  * 
  * Squeejs production release.
  *
- * @version 1.0.9
+ * @version 1.0.5
  * @author Daniele Bonini <my25mb@aol.com>
  * @copyrights (c) 2016, 2024, 5 Mode
  * @license https://opensource.org/licenses/MIT 
@@ -106,30 +106,6 @@ function SqueeJS() {
   this.hideElByGeoLocation = myhideElByGeoLocation;
   this.showElByGeoLocation = myshowElByGeoLocation;
   
-  //UserTranslation
-  this.usertransContentContId = "";
-  this.usertransVisible = false;
-  this.usertransOnIco = false;  
-  this.tranSource = [];
-  this.tranDest = [];
-  
-  this.usertransPopUp=myusertransPopUp;
-  this.usertransHide=myusertransHide;
-  this.usertransCheckFlagIco=myusertransCheckFlagIco;
-  this.usertransUnCheckFlagIco=myusertransUnCheckFlagIco;
-  this.usertransBodyOnClick=myusertransBodyOnClick;
-  this.getTranslitarates = mygetTranslitarates;
-  this.translate = mytranslate;
-  this.createUserTrans = mycreateUserTrans;
-  
-  //Sideabar
-  this.sidebarContentContId = "";
-  this.sidebarVisible = false;
-  
-  this.sidebarClose = mysidebarClose;
-  this.sidebarShow = mysidebarShow;
-  this.createSidebar = mycreateSidebar;
-  
   /**
    * gfSQJZDocWidth
    * 
@@ -180,33 +156,9 @@ function SqueeJS() {
   }
 
   /**
-   * gfSQJZLoad
-   * 
-   * Load the content of <url> in the given DIV element
-   * 
-   * @param {string} id, the DIV id to fill
-   * @param {string} url, the url of the content to load
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function gfSQJZLoad(id, url) {
-    try {
-      var xhttp = new XMLHttpRequest();
-      var xmluri = url;
-      //alert(xmluri);
-      xhttp.open("GET", xmluri, false);  
-      xhttp.send();
-      document.getElementById(id).innerHTML = xhttp.responseText;
-    } catch(e) {
-      throw new Error("404 or CORS error: check the resource availability and Access-Control-Allow-Origin of your site.");
-    }  
-  }
-
-  /**
    * gfSQJZrnd
    * 
-   * Generate a random number between the given limits
+   * Geenerate a random number between the given limits
    * 
    * @param {int} min, the starting limit
    * @param {int} max, the max limit
@@ -229,7 +181,7 @@ function SqueeJS() {
   /**
    * highlightDiv
    * 
-   * Highlight the current DIV element
+   * highlight the current DIV element
    * 
    * Context:
    * - call this function in the onmouseenter event 
@@ -245,13 +197,12 @@ function SqueeJS() {
     }
     // --- saving original data
     myR = tthis.getBoundingClientRect();
-    highlightIndex = tthis.getAttribute("highlightIndex");
-    this.highlightOriTop[highlightIndex] = parseInt(myR.top);
-    this.highlightOriHeight[highlightIndex] = parseInt(myR.height);
-    this.highlightOriWidth[highlightIndex] = parseInt(myR.width);
-    this.highlightOriFontSize[highlightIndex] = tthis.style.fontSize;
-    this.highlightOriBorder[highlightIndex] = tthis.style.border;
-    this.highlightOriPosition[highlightIndex] = tthis.style.position;
+    this.highlightOriTop[tthis.tabIndex] = parseInt(myR.top);
+    this.highlightOriHeight[tthis.tabIndex] = parseInt(myR.height);
+    this.highlightOriWidth[tthis.tabIndex] = parseInt(myR.width);
+    this.highlightOriFontSize[tthis.tabIndex] = tthis.style.fontSize;
+    this.highlightOriBorder[tthis.tabIndex] = tthis.style.border;
+    this.highlightOriPosition[tthis.tabIndex] = tthis.style.position;
     // ---
 
     tthis.style.position = "absolute";
@@ -266,7 +217,7 @@ function SqueeJS() {
   /**
    * unlightDiv
    * 
-   * Unlight the current DIV element
+   * unlight the current DIV element
    * 
    * Context:
    * - call this function in the onmouseleave event 
@@ -281,15 +232,14 @@ function SqueeJS() {
       return;    
     }
     // --- restoring original data  
-    highlightIndex = tthis.getAttribute("highlightIndex");
-    if (this.highlightOriTop[highlightIndex]===null) {  
+    if (this.highlightOriTop[tthis.tabIndex]===null) {
       return;
     }  
-    tthis.style.fontSize = this.highlightOriFontSize[highlightIndex];
-    tthis.style.border = this.highlightOriBorder[highlightIndex];
-    tthis.style.width = (this.highlightOriWidth[highlightIndex]-6)+"px";
-    tthis.style.height = (this.highlightOriHeight[highlightIndex]-6)+"px";
-    tthis.style.position = this.highlightOriPosition[highlightIndex];
+    tthis.style.fontSize = this.highlightOriFontSize[tthis.tabIndex];
+    tthis.style.border = this.highlightOriBorder[tthis.tabIndex];
+    tthis.style.width = (this.highlightOriWidth[tthis.tabIndex]-6)+"px";
+    tthis.style.height = (this.highlightOriHeight[tthis.tabIndex]-6)+"px";
+    tthis.style.position = this.highlightOriPosition[tthis.tabIndex];
     // ---
 
     //document.getElementById("debug1").value=tthis.id+"-30-"+tthis.tabIndex+"Leave";
@@ -298,7 +248,7 @@ function SqueeJS() {
   /**
    * highlightInput
    * 
-   * Highlight the current INPUT element
+   * highlight the current INPUT element
    * 
    * Context:
    * - call this function in the onmouseenter event 
@@ -314,13 +264,12 @@ function SqueeJS() {
     }
     // --- saving original data
     myR = tthis.getBoundingClientRect();
-    highlightIndex = tthis.getAttribute("highlightIndex");
-    this.highlightOriTop[highlightIndex] = parseInt(myR.top);
-    this.highlightOriHeight[highlightIndex] = parseInt(myR.height);
-    this.highlightOriWidth[highlightIndex] = parseInt(myR.width);
-    this.highlightOriFontSize[highlightIndex] = tthis.style.fontSize;
-    this.highlightOriBorder[highlightIndex] = tthis.style.border;
-    this.highlightOriPosition[highlightIndex] = tthis.style.position;
+    this.highlightOriTop[tthis.tabIndex] = parseInt(myR.top);
+    this.highlightOriHeight[tthis.tabIndex] = parseInt(myR.height);
+    this.highlightOriWidth[tthis.tabIndex] = parseInt(myR.width);
+    this.highlightOriFontSize[tthis.tabIndex] = tthis.style.fontSize;
+    this.highlightOriBorder[tthis.tabIndex] = tthis.style.border;
+    this.highlightOriPosition[tthis.tabIndex] = tthis.style.position;
     // ---
 
     tthis.style.position = "absolute";
@@ -335,7 +284,7 @@ function SqueeJS() {
   /**
    * unlightInput
    * 
-   * Unlight the current INPUT element
+   * unlight the current INPUT element
    * 
    * Context:
    * - call this function in the onmouseleave event 
@@ -350,15 +299,14 @@ function SqueeJS() {
       return;    
     }
     // --- restoring original data  
-    highlightIndex = tthis.getAttribute("highlightIndex");
-    if (this.highlightOriTop[highlightIndex]===null) {
+    if (this.highlightOriTop[tthis.tabIndex]===null) {
       return;
     }  
-    tthis.style.fontSize = this.highlightOriFontSize[highlightIndex];
-    tthis.style.border = this.highlightOriBorder[highlightIndex];
-    tthis.style.width = (this.highlightOriWidth[highlightIndex]-6)+"px";
-    tthis.style.height = (this.highlightOriHeight[highlightIndex]-6)+"px";
-    tthis.style.position = this.highlightOriPosition[highlightIndex];
+    tthis.style.fontSize = this.highlightOriFontSize[tthis.tabIndex];
+    tthis.style.border = this.highlightOriBorder[tthis.tabIndex];
+    tthis.style.width = (this.highlightOriWidth[tthis.tabIndex]-6)+"px";
+    tthis.style.height = (this.highlightOriHeight[tthis.tabIndex]-6)+"px";
+    tthis.style.position = this.highlightOriPosition[tthis.tabIndex];
     // ---
 
     //document.getElementById("debug1").value=tthis.id+"-30-"+tthis.tabIndex+"Leave";
@@ -367,7 +315,7 @@ function SqueeJS() {
   /**
    * highlightTextArea
    * 
-   * Highlight the current TEXTAREA element
+   * highlight the current TEXTAREA element
    * 
    * Context:
    * - call this function in the onmouseenter event 
@@ -383,13 +331,12 @@ function SqueeJS() {
     }
     // --- saving original data
     myR = tthis.getBoundingClientRect();
-    highlightIndex = tthis.getAttribute("highlightIndex");
-    this.highlightOriTop[highlightIndex] = parseInt(myR.top);
-    this.highlightOriHeight[highlightIndex] = parseInt(myR.height);
-    this.highlightOriWidth[highlightIndex] = parseInt(myR.width);
-    this.highlightOriFontSize[highlightIndex] = tthis.style.fontSize;
-    this.highlightOriBorder[highlightIndex] = tthis.style.border;
-    this.highlightOriPosition[highlightIndex] = tthis.style.position;
+    this.highlightOriTop[tthis.tabIndex] = parseInt(myR.top);
+    this.highlightOriHeight[tthis.tabIndex] = parseInt(myR.height);
+    this.highlightOriWidth[tthis.tabIndex] = parseInt(myR.width);
+    this.highlightOriFontSize[tthis.tabIndex] = tthis.style.fontSize;
+    this.highlightOriBorder[tthis.tabIndex] = tthis.style.border;
+    this.highlightOriPosition[tthis.tabIndex] = tthis.style.position;
     // ---
 
     tthis.style.position = "absolute";
@@ -404,7 +351,7 @@ function SqueeJS() {
   /**
    * unlightTextArea
    * 
-   * Unlight the current TEXTAREA element
+   * highlight the current TEXTAREA element
    * 
    * Context:
    * - call this function in the onmouseleave event 
@@ -419,15 +366,14 @@ function SqueeJS() {
       return;    
     }
     // --- restoring original data  
-    highlightIndex = tthis.getAttribute("highlightIndex");
-    if (this.highlightOriTop[highlightIndex]===null) {
+    if (this.highlightOriTop[tthis.tabIndex]===null) {
       return;
     }  
-    tthis.style.fontSize = this.highlightOriFontSize[highlightIndex];
-    tthis.style.border = this.highlightOriBorder[highlightIndex];
-    tthis.style.width = (this.highlightOriWidth[highlightIndex]-6)+"px";
-    tthis.style.height = (this.highlightOriHeight[highlightIndex]-6)+"px";
-    tthis.style.position = this.highlightOriPosition[highlightIndex];
+    tthis.style.fontSize = this.highlightOriFontSize[tthis.tabIndex];
+    tthis.style.border = this.highlightOriBorder[tthis.tabIndex];
+    tthis.style.width = (this.highlightOriWidth[tthis.tabIndex]-6)+"px";
+    tthis.style.height = (this.highlightOriHeight[tthis.tabIndex]-6)+"px";
+    tthis.style.position = this.highlightOriPosition[tthis.tabIndex];
     // ---
 
     //document.getElementById("debug1").value=tthis.id+"-30-"+tthis.tabIndex+"Leave";
@@ -443,7 +389,7 @@ function SqueeJS() {
   /**
    * createSplash
    * 
-   * Create the tag DIV for the splash screen
+   * create the tag DIV for the splash screen
    * 
    * Context:
    * - this function is for internal use 
@@ -611,7 +557,7 @@ function SqueeJS() {
   /**
    * createWIP
    * 
-   * Create the tag DIV for the Work In Progress Banner
+   * create the tag DIV for the Work In Progress Banner
    * 
    * Context:
    * - this function is for internal use 
@@ -762,7 +708,7 @@ function SqueeJS() {
   /**
    * createBanner
    * 
-   * Create a new Banner
+   * create a new Banner
    * 
    * Context:
    * - Call in the body of your webpage 
@@ -859,7 +805,7 @@ function SqueeJS() {
   /**
    * createFooter
    * 
-   * Create the tag DIV for the footer
+   * create the tag DIV for the footer
    * 
    * Context:
    * - Call it in the body of your webpage
@@ -1063,7 +1009,7 @@ function SqueeJS() {
   /**
    * mycreateAppMenu
    * 
-   * Create the tag DIV of menu icon and app menu
+   * create the tag DIV of menu icon and app menu
    * 
    * Context:
    * - Call it in the body of your webpage 
@@ -1101,19 +1047,9 @@ function SqueeJS() {
     //D.body.appendChild(newdiv);
     D.write(newdiv.outerHTML);
 
-    //$("#SQJSappMenuIco").on("click",function(){SQJS.appmenuPopUp();});
-    //$("#SQJSappMenuIco").on("mouseover",function(){SQJS.appmenuCheckFlagIco();});
-    //$("#SQJSappMenuIco").on("mouseout",function(){SQJS.appmenuUnCheckFlagIco();});
-
-    document.getElementById("SQJSappMenuIco").addEventListener("click", function() {
-      SQJS.appmenuPopUp();
-    });    
-    document.getElementById("SQJSappMenuIco").addEventListener("mouseover", function() {
-      SQJS.appmenuCheckFlagIco();
-    });
-    document.getElementById("SQJSappMenuIco").addEventListener("mouseout", function() {
-      SQJS.appmenuUnCheckFlagIco();
-    });    
+    $("#SQJSappMenuIco").on("click",function(){SQJS.appmenuPopUp();});
+    $("#SQJSappMenuIco").on("mouseover",function(){SQJS.appmenuCheckFlagIco();});
+    $("#SQJSappMenuIco").on("mouseout",function(){SQJS.appmenuUnCheckFlagIco();});
     
     menu = "";
     menu += "<!-- Here goes the content of the AppMenu -->";
@@ -1128,25 +1064,12 @@ function SqueeJS() {
     D.body.appendChild(newdiv);
     //D.write(newdiv.outerHTML);
 
-    //$("#SQJSappMenu").on("mouseover",function(){SQJS.appmenuCheckFlagIco();});
-    //$("#SQJSappMenu").on("mouseout",function(){SQJS.appmenuUnCheckFlagIco();});
+    $("#SQJSappMenu").on("mouseover",function(){SQJS.appmenuCheckFlagIco();});
+    $("#SQJSappMenu").on("mouseout",function(){SQJS.appmenuUnCheckFlagIco();});
 
-    document.getElementById("SQJSappMenu").addEventListener("mouseover", function() {
-      SQJS.appmenuCheckFlagIco();
-    });
-    document.getElementById("SQJSappMenu").addEventListener("mouseout", function() {
-      SQJS.appmenuUnCheckFlagIco();
-    });
-
-    //$("#SQJSappMenu").load(menuURL+"?rrnd=" + gfSQJZrnd(50000, 99999));
+    $("#SQJSappMenu").load(menuURL+"?rrnd="+ gfSQJZrnd(50000, 99999));
     
-    gfSQJZLoad("SQJSappMenu", menuURL+"?rrnd=" + gfSQJZrnd(50000, 99999));
-    
-    //$(document.body).on("click", function() {SQJS.appmenuBodyOnClick();});
-    
-    document.body.addEventListener("click", function() {
-      SQJS.appmenuBodyOnClick();
-    });
+    $(document.body).on("click", function() {SQJS.appmenuBodyOnClick();});
 	}	
   // --- AppMenu
   
@@ -1169,16 +1092,12 @@ function SqueeJS() {
    */
   function myretrieveGeoLocation() {
     if (!this.geoLocation || this.geoLocation=="") {
-      try {
-        var xhttp = new XMLHttpRequest();
-        var xmluri = SQJS_GEOURL;
-        //alert(xmluri);
-        xhttp.open("GET", xmluri, false);  
-        xhttp.send();
-        this.geoLocation = xhttp.responseText;
-      } catch(e) {
-        throw new Error("CORS error: check the resource availability and Access-Control-Allow-Origin of your site.");
-      }          
+      var xhttp = new XMLHttpRequest();
+      var xmluri = SQJS_GEOURL;
+      //alert(xmluri);
+      xhttp.open("GET", xmluri, false);  
+      xhttp.send();
+      this.geoLocation = xhttp.responseText;
     }
   }
   
@@ -1229,433 +1148,15 @@ function SqueeJS() {
       }
     } 
   }
-  // --- GeoLocation
-  
-  /**
-   * 
-   * UserTranslation
-   */
-  
-  /**
-   * myusertransPopUp
-   * 
-   * Display/hide the user trans menu
-   * 
-   * Context:
-   * - this function is for internal use
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function myusertransPopUp() {
-    if (!this.usertransVisible) {
-      document.getElementById("SQJSuserTransMenu").style.display = "inline";
-      document.getElementById("SQJSuserTransMenu").style.zIndex = "99998";
-      document.getElementById(this.usertransContentContId).style.zIndex = "99997";
-      document.getElementById(this.usertransContentContId ).style.opacity = "0.3";
-    } else {
-      document.getElementById("SQJSuserTransMenu").style.display = "none";
-      document.getElementById("SQJSuserTransMenu").style.zIndex = "99992";  
-      document.getElementById(this.usertransContentContId).style.zIndex = "99993";
-      document.getElementById(this.usertransContentContId).style.opacity = "1.0";
-    }
-    this.usertransVisible=!this.usertransVisible;
-  } 
-  
-  /**
-   * myusertransHide
-   * 
-   * Hide the client trans menu
-   * 
-   * Context:
-   * - this function is for internal use
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function myusertransHide() {
-    document.getElementById("SQJSuserTransMenu").style.display = "none";
-    this.usertransVisible=false;
-    document.getElementById(this.usertransContentContId).style.opacity = "1.0";
-  } 
-
-  /**
-   * myusertransCheckFlagIco
-   * 
-   * Check to true the menu icon flag
-   * 
-   * Context:
-   * - this function is for internal use
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function myusertransCheckFlagIco() {
-    this.usertransOnIco = true;
-  }  
-
-  /**
-   * myusertransUnCheckFlagIco
-   * 
-   * Check to false the menu icon flag
-   * 
-   * Context:
-   * - this function is for internal use
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function myusertransUnCheckFlagIco() {
-    this.usertransOnIco = false;
-  }  
-  
-  /**
-   * myusertransBodyOnClick
-   * 
-   * Body click event function: if open, hide the menu
-   * 
-   * Context:
-   * - this function is for internal use
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function myusertransBodyOnClick() {
-		if (!this.usertransOnIco) {
-		  this.usertransHide();
-		}
-	}	
-  
-  /**
-   * mygetTranslitarates
-   * 
-   * Get the transliterates to use in the translation
-   * 
-   * Context:
-   * - this function is for internal use 
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function mygetTranslitarates() {
-    v=document.getElementById("SQJSuserTransTB").value.trim();
-    if (v!=="") {
-		  if (v.substr(0,4).toLowerCase() === "http") {
-		    transURL = v;
-        try {
-          var xhttp = new XMLHttpRequest();
-          var xmluri = transURL;
-          //alert(xmluri);
-          xhttp.open("GET", xmluri, false);  
-          xhttp.send();
-          xml = xhttp.responseText;
-        } catch(e) {
-          throw new Error("404 or CORS error: check the resource availability and Access-Control-Allow-Origin of your site.");
-        }    
-		  } else {
-		    xml = v;
-		  }
-      //cleaning
-      xml = xml.trim("\n");
-      xml = xml.trim();
-      xml = xml.trim("\n");
-      xml = xml.trim();
-		  // parsing text
-		  tl = xml.split("\n");
-		  it=0;
-		  for (t of tl) {
-		    curt = t.split("|||");
-        if (curt[0] && curt[0]!=="") {
-          this.tranSource[it] = curt[0]; 
-		      this.tranDest[it] = curt[1];        
-        }  
-		    it++;
-		  }
-		}  
-  }
-  
-  /**
-   * mytranslate
-   * 
-   * Make the client translation of the current web page
-   * 
-   * Context:
-   * - this function is for internal use 
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function mytranslate() {
-    this.getTranslitarates();
-		it=0;
-		for (ts of this.tranSource) {
-		  nl = document.getElementsByTagName("H1");
-			for (n of nl) {
-				n.innerHTML = n.innerHTML.replace(ts, this.tranDest[it]);
-			}
-		  nl = document.getElementsByTagName("H2");
-			for (n of nl) {
-				n.innerHTML = n.innerHTML.replace(ts, this.tranDest[it]);
-			}
-		  nl = document.getElementsByTagName("H3");
-			for (n of nl) {
-				n.innerHTML = n.innerHTML.replace(ts, this.tranDest[it]);
-			}
-      nl = document.getElementsByTagName("A");
-			for (n of nl) {
-				n.innerHTML = n.innerHTML.replace(ts, this.tranDest[it]);
-			}
-      nl = document.getElementsByTagName("DIV");
-			for (n of nl) {
-				n.innerHTML = n.innerHTML.replace(ts, this.tranDest[it]);
-			}
-		  nl = document.getElementsByTagName("LABEL");
-			for (n of nl) {
-				n.innerHTML = n.innerHTML.replace(ts, this.tranDest[it]);
-			}			
-		  nl = document.getElementsByTagName("SPAN");
-			for (n of nl) {
-				n.innerHTML = n.innerHTML.replace(ts, this.tranDest[it]);
-			}			
-			nl = document.getElementsByTagName("INPUT");
-			for (n of nl) {
-				n.value = n.value.replace(ts, this.tranDest[it]);
-				n.setAttribute("placeholder", n.getAttribute("placeholder").replace(ts, this.tranDest[it]));
-			}
-			nl = document.getElementsByTagName("TEXTAREA");
-			for (n of nl) {
-        if (n.id !== "SQJSuserTransTB") {
-			    n.innerHTML = n.innerHTML.replace(ts, this.tranDest[it]);
-        }
-			}
-			it++;
-		}	
-  } 
-
-  /**
-   * mycreateUserTrans
-   * 
-   * Create the tag DIV of user trans icon and user trans menu
-   * 
-   * Context:
-   * - Call it in the body of your webpage 
-   * 
-   * @param {string} icoURI, the URI of the menu icon
-   * @param {string} contentContId, the container of the body content (the menu will disable it)
-   * @param {string} top, the y coord of the menu position 
-   * @param {string} left, the x coord of the menu position 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function mycreateUserTrans(icoURI, contentContId, top, left) {
-    
-    //if (typeof jQuery === 'undefined') {
-    //  throw new Error('This SqueeJS\'s function requires jQuery');
-    //}
-    
-    var D = document;
-    //w = gfSQJZDocWidth();
-    //h = gfSQJZDocHeight();
-    this.usertransContentContId = contentContId;
-
-    menuico = "";
-    menuico = "<img src='"+icoURI+"' style='width:48px;height:48px;' alt='user translation'>";
-
-    newdiv=D.createElement("div");
-    newdiv.id = "SQJSuserTransIco";
-    newdiv.style.width = "48px";
-    newdiv.style.height = "48px";
-    newdiv.innerHTML = menuico;
-    //D.body.appendChild(newdiv);
-    D.write(newdiv.outerHTML);
-
-    //document.getElementById("SQJSuserTransIco").onclick = function(){SQJS.usertransPopUp();};
-    //document.getElementById("SQJSuserTransIco").onmouseover = function(){SQJS.usertransCheckFlagIco();};
-    //document.getElementById("SQJSuserTransIco").onmouseout = function(){SQJS.usertransUnCheckFlagIco();};
-
-    document.getElementById("SQJSuserTransIco").addEventListener("click", function() {
-      SQJS.usertransPopUp();
-    });    
-    document.getElementById("SQJSuserTransIco").addEventListener("mouseover", function() {
-      SQJS.usertransCheckFlagIco();
-    });
-    document.getElementById("SQJSuserTransIco").addEventListener("mouseout", function() {
-      SQJS.usertransUnCheckFlagIco();
-    });
-        
-    menu = "";
-    menu += "<span style='font-size:10px;'>text or link, use ||| to separate source from translation:</span>";
-    menu += "<textarea id='SQJSuserTransTB'></textarea><br>";
-    menu += "<button id='SQJSuserTransBUT' onclick='SQJS.translate();'><img src='//squeejs.com/res/trans.png' style='height:70px'></button><br>";
-    menu += "<br>";
-    
-    newdiv=D.createElement("div");
-    newdiv.id = "SQJSuserTransMenu";
-    newdiv.style.top = top+"px";
-    newdiv.style.left = left+"px";
-    newdiv.style.width = "380px";
-    newdiv.style.height = "515px";
-    newdiv.innerHTML = menu;
-    D.body.appendChild(newdiv);
-    //D.write(newdiv.outerHTML);
-
-    //document.getElementById("SQJSuserTransMenu").onmouseover = function(){SQJS.usertransCheckFlagIco();};
-    //document.getElementById("SQJSuserTransMenu").onmouseout = function(){SQJS.usertransUnCheckFlagIco();};
-    
-    document.getElementById("SQJSuserTransMenu").addEventListener("mouseover", function() {
-      SQJS.usertransCheckFlagIco();
-    });
-    document.getElementById("SQJSuserTransMenu").addEventListener("mouseout", function() {
-      SQJS.usertransUnCheckFlagIco();
-    });   
-    
-    //document.body.onclick = function(){SQJS.usertransBodyOnClick();};
-    
-    document.body.addEventListener("click", function() {
-      SQJS.usertransBodyOnClick();
-    });  
-    
-	}	
-  // --- UserTranslation
-  
-  /**
-   * 
-   * Sidebar
-   */
-  
-  /**
-   * mysidebarShow
-   * 
-   * Show the sidebar
-   * 
-   * Context:
-   * - this function is for internal use 
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function mysidebarShow() {
-    if (!this.sidebarVisible) {
-      document.getElementById(this.sidebarContentContId).style.width = "100%";
-      //$("#SQJSsidebar").show("slow");
-      document.getElementById("SQJSsidebar").style.display = "inline";
-    }  
-    this.sidebarVisible = true; 
-  }
-
-  /**
-   * mysidebarClose
-   * 
-   * Close the sidebar
-   * 
-   * Context:
-   * - this function is for internal use 
-   * 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function mysidebarClose() {
-    document.getElementById("SQJSsidebar").style.display = "none";
-    document.getElementById(this.sidebarContentContId).style.width = "100%";
-    this.sidebarVisible = false; 
-  }
-  
-  /**
-   * mycreateSidebar
-   * 
-   * Create the tag DIV of sidebar
-   * 
-   * Context:
-   * - Call it in the body of your webpage 
-   * 
-   * @param {string} sidebarURL, the URI of the of the sidebar
-   * @param {string} contentContId, the container of the body content
-   * @param {string} width, the width of the sidebar 
-   * @param {string} height, the height of the sidebar 
-   * @returns {void}
-   * 
-   * This function is part of SqueeJS.
-   */
-  function mycreateSidebar(sidebarURL, contentContId, width, height) {
-    
-    if (typeof jQuery === 'undefined') {
-      throw new Error('This SqueeJS\'s function requires jQuery');
-    }
-    
-    var D = document;
-    //w = gfSQJZDocWidth();
-    //h = gfSQJZDocHeight();
-    this.sidebarContentContId = contentContId;
-
-    barcall = "";
-    barcall = "&nbsp;";
-
-    newdiv=D.createElement("div");
-    newdiv.id = "SQJSsidebarCall";
-    newdiv.innerHTML = barcall;
-    D.body.appendChild(newdiv);
-    //D.write(newdiv.outerHTML);
-
-    //document.getElementById("SQJSsidebarCall").onmouseover = function(){SQJS.sidebarShow();};
-    document.getElementById("SQJSsidebarCall").addEventListener("mouseover", function() {
-      SQJS.sidebarShow();
-    });
-    
-    sidebar = "";
-    sidebar += "<div sty='text-align:left;'>";
-    sidebar += "<button type='button' class='SQJSclose-button' style='left:10px' onclick='SQJS.sidebarClose();'>";
-    sidebar += "<span style='font-size:45px; font-weight:900;'>&times;</span>";
-    sidebar += "</button>";
-    sidebar += "</div>";
-    sidebar += "<div id='SQJSsidebarContent'>";
-    sidebar += "</div>";
-    
-    newdiv=D.createElement("div");
-    newdiv.id = "SQJSsidebar";
-    newdiv.style.width = width + "px";
-    newdiv.style.height = height + "px";
-    newdiv.innerHTML = sidebar;
-    D.body.appendChild(newdiv);
-    //D.write(newdiv.outerHTML);
-
-    //$("#SQJSsidebarContent").load(sidebarURL+"?rrnd="+ gfSQJZrnd(50000, 99999));
-    gfSQJZLoad("SQJSsidebarContent", sidebarURL+"?rrnd="+ gfSQJZrnd(50000, 99999))
-   
-    document.body.addEventListener("click", function() {
-      SQJS.sidebarClose();
-    });
-
-	}	
-  // --- Sidebar
   
 }
 window.SQJS = window.SqueeJS = new SqueeJS();
 
 window.addEventListener("load", function() {
-  nl = document.getElementsByTagName("DIV");
+  nl = document.getElementsByTagName("*");
   i=0;
   for (n of nl) {
-    n.setAttribute("highlightIndex", i);
-    i++;
-  }
-  nl = document.getElementsByTagName("INPUT");
-  for (n of nl) {
-    n.setAttribute("highlightIndex", i);
-    i++;
-  }
-  nl = document.getElementsByTagName("TEXTAREA");
-  for (n of nl) {
-    n.setAttribute("highlightIndex", i);
+    n.tabIndex = i;
     i++;
   }
 },true);

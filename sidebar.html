@@ -21,9 +21,9 @@
 * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *
-* splash.html
+* sidebar.html
 * 
-* SqueeJS Doc and examples for the Splash functionalities.
+* SqueeJS Doc and examples for the Sidebar functionalities.
 *
 * @author Daniele Bonini <my25mb@aol.com>
 * @copyrights (c) 2016, 2024, 5 Mode    
@@ -32,7 +32,7 @@
 <html>
     <head>
        
-      <title>Splash: doc and examples.</title>
+      <title>Sidebar: doc and examples.</title>
        
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,64 +44,61 @@
       <meta name="robots" content="index,follow"/>
       <meta name="keywords" content="Squeejs,javascript,framework,squeejs.com,MIT,license,5 Mode"/>
        
+      <script src="/js/jquery-3.6.0.min.js" type="text/javascript"></script>
       <script src="/js/common.js" type="text/javascript"></script>
       <script src="/js/squeejs.js?r=3445566" type="text/javascript"></script>
        
       <link href="/css/style.css?v=1631827555" type="text/css" rel="stylesheet">
-      
+      <link href="/css/squeejs.css?v=1631827556" type="text/css" rel="stylesheet">
+
 </head>
 <body style="border:0px solid lightgray; padding:20px; margin-right:20px;">
 
-<div id="content" style="max-width:1000px;">  
-  
 <a href="/"><img src="/res/logo.png" style="width:300px;background:#FFFFFF;border:1px solid gray;"></a><br>
 
 <br><br><br>
 
-<h2>SPLASH</h2>    
+<h2>SIDEBAR</h2>    
 
-Here the Javascript code available to be inserted in your web page to implement a <i>splash screen</i>.<br>
+Here the Javascript code available to be inserted in your web page to implement a <i>sidebar</i>.<br>
 <br>
 Please check the <b>context</b> of implementation for each of the functions.<br>
 
-<br><br><br>
+<br><br>
+
+<h2>Example:</h2>
+See the tip coming out from the left side of the screen.
+<script>
+var myNewSidebar = SQJS.createSidebar("https://squeejs.com/mysidebar.html", "content", 300, window.innerHeight);
+</script>
+ 
+<br>
+
+<div id="content" style="height:430px;">  
+  
+<br><br>
 
 <h2>Code:</h2>  
 
 <pre>
-/**
- * SQJS.initAppWithSplash
- * 
- * Init the web app to start with the Splash
- * 
- * Context:
- * - Call this function in the load event (ie. by a window.AddEventListener) of the webpage 
- * 
- * @param {string} mainContainerId, the container ID for the webpage content
- * @param {string} title, the title of the splash screen
- * @param {string} logoURI, the logo to display in the splash screen
- * @param {string} BG, the background for the splash screen
- * @param {int} timeout, the splash screen timeout
- * @returns {void}
- * 
- * This function is part of SqueeJS.
- */
-<b>function SQJS.initAppWithSplash(mainContainerId, title, logoURI, BG, timeout){};</b>
 
-/**
- * SQJS.initAppWithoutSplash
- * 
- * Init the web app to start withOUT the Splash
- * 
- * Context:
- * - Call this function in the load event (ie. by a window.AddEventListener) of the webpage 
- * 
- * @param {string} mainContainerId, the container ID for the webpage content
- * @returns {void}
- * 
- * This function is part of SqueeJS.
- */
-<b>function SQJS.initAppWithoutSplash(mainContainerId){};</b>
+  /**
+   * SQJS.createSidebar
+   * 
+   * Create the tag DIV of sidebar
+   * 
+   * Context:
+   * - Call it in the body of your webpage 
+   * 
+   * @param {string} sidebarURL, the URI of the of the sidebar
+   * @param {string} contentContId, the container of the body content
+   * @param {string} width, the width of the sidebar 
+   * @param {string} height, the height of the sidebar 
+   * @returns {void}
+   * 
+   * This function is part of SqueeJS.
+   */
+  <b>function  SQJS.createSidebar(sidebarURL, contentContId, width, height){};</b>
 
 </pre>  
 
@@ -112,17 +109,13 @@ Please check the <b>context</b> of implementation for each of the functions.<br>
 <pre style="background:lightyellow;width:100%;white-space: pre-wrap;">
 
     &lt;script&gt;
-    window.addEventListener("load", function() {
-
-      SQJS.initAppWithSplash("content", "SqueeJS", "/res/logo.png", "#FFFFFF", 2500);
-
-    }, true);
+     var myNewSidebar = SQJS.createSidebar("/mysidebar.html", "content", 300, window.innerHeight);
     &lt;/script&gt;
 
 </pre>
 
 <div style="clear:both; margin:auto;"> 
-<br><br><br><br><br><br><br><br><br>
+<br><br>
 </div>
 
 <div class="footer" style="float:right">
@@ -136,12 +129,6 @@ Please check the <b>context</b> of implementation for each of the functions.<br>
   
 function setFooterPos() {
   if (document.getElementById("footerCont")) {
-    
-    //if ($("#Password").val() === "") {  
-    //    tollerance = 48;
-    //  } else {
-    //  tollerance = 15;
-    //}
     tollerance = 12;  	  
     footerContHeight = 35;
     footerHeight = 32;
@@ -153,9 +140,7 @@ setFooterPos();
 
 window.addEventListener("load", function() {
     
-  SQJS.initAppWithSplash("content", "SqueeJS", "/res/logo.png", "#FFFFFF", 2500);
-  
-  setTimeout("setFooterPos()", 6500);
+  setTimeout("setFooterPos()", 1500);
   
 }, true);
   
