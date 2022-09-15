@@ -24,7 +24,7 @@
  * 
  * Squeejs production release.
  *
- * @version 1.0.9
+ * @version 1.1.1
  * @author Daniele Bonini <my25mb@aol.com>
  * @copyrights (c) 2016, 2024, 5 Mode
  * @license https://opensource.org/licenses/MIT 
@@ -125,9 +125,13 @@ function SqueeJS() {
   //Sideabar
   this.sidebarContentContId = "";
   this.sidebarVisible = false;
+  this.sidebarOnIT = false;
   
   this.sidebarClose = mysidebarClose;
   this.sidebarShow = mysidebarShow;
+  this.sidebarCheckFlag=mysidebarCheckFlag;
+  this.sidebarUnCheckFlag=mysidebarUnCheckFlag;
+  this.sidebarBodyOnClick=mysidebarBodyOnClick;  
   this.createSidebar = mycreateSidebar;
   
   /**
@@ -1532,6 +1536,56 @@ function SqueeJS() {
    */
   
   /**
+   * mysidebarCheckFlag
+   * 
+   * Check to true the sideabr flag
+   * 
+   * Context:
+   * - this function is for internal use
+   * 
+   * @returns {void}
+   * 
+   * This function is part of SqueeJS.
+   */
+  function mysidebarCheckFlag() {
+    this.sidebarOnIT = true;
+  }  
+
+  /**
+   * mysidebarUnCheckFlag
+   * 
+   * Check to false the sidebar flag
+   * 
+   * Context:
+   * - this function is for internal use
+   * 
+   * @returns {void}
+   * 
+   * This function is part of SqueeJS.
+   */
+  function mysidebarUnCheckFlag() {
+    this.sidebarOnIT = false;
+  }  
+  
+  /**
+   * myusertransBodyOnClick
+   * 
+   * Body click event function: if open, hide the menu
+   * 
+   * Context:
+   * - this function is for internal use
+   * 
+   * @returns {void}
+   * 
+   * This function is part of SqueeJS.
+   */
+  function mysidebarBodyOnClick() {
+		if (!this.sidebarOnIT) {
+		  this.sidebarClose();
+		}
+	}	
+  
+  /**
    * mysidebarShow
    * 
    * Show the sidebar
@@ -1545,7 +1599,9 @@ function SqueeJS() {
    */
   function mysidebarShow() {
     if (!this.sidebarVisible) {
-      document.getElementById(this.sidebarContentContId).style.width = "100%";
+      if (document.getElementById(this.sidebarContentContId)) {
+        document.getElementById(this.sidebarContentContId).style.width = "100%";
+      }  
       //$("#SQJSsidebar").show("slow");
       document.getElementById("SQJSsidebar").style.display = "inline";
     }  
@@ -1566,7 +1622,9 @@ function SqueeJS() {
    */
   function mysidebarClose() {
     document.getElementById("SQJSsidebar").style.display = "none";
-    document.getElementById(this.sidebarContentContId).style.width = "100%";
+    if (document.getElementById(this.sidebarContentContId)) {
+      document.getElementById(this.sidebarContentContId).style.width = "100%";
+    }  
     this.sidebarVisible = false; 
   }
   
@@ -1610,10 +1668,13 @@ function SqueeJS() {
     document.getElementById("SQJSsidebarCall").addEventListener("mouseover", function() {
       SQJS.sidebarShow();
     });
-    
+    document.getElementById("SQJSsidebarCall").addEventListener("touchstart", function() {
+      SQJS.sidebarShow();
+    });
+        
     sidebar = "";
-    sidebar += "<div sty='text-align:left;'>";
-    sidebar += "<button type='button' class='SQJSclose-button' style='left:10px' onclick='SQJS.sidebarClose();'>";
+    sidebar += "<div style='text-align:right;'>";
+    sidebar += "<button type='button' class='SQJSclose-button'  style='position:relative; left:-10px' onclick='SQJS.sidebarClose();'>";
     sidebar += "<span style='font-size:45px; font-weight:900;'>&times;</span>";
     sidebar += "</button>";
     sidebar += "</div>";
@@ -1628,11 +1689,24 @@ function SqueeJS() {
     D.body.appendChild(newdiv);
     //D.write(newdiv.outerHTML);
 
+    document.getElementById("SQJSsidebar").addEventListener("mouseover", function() {
+      SQJS.sidebarCheckFlag();
+    });
+    document.getElementById("SQJSsidebar").addEventListener("mouseout", function() {
+      SQJS.sidebarUnCheckFlag();
+    });
+    document.getElementById("SQJSsidebar").addEventListener("touchstart", function() {
+      SQJS.sidebarCheckFlag();
+    });
+    document.getElementById("SQJSsidebar").addEventListener("touchend", function() {
+      SQJS.sidebarUnCheckFlag();
+    });
+    
     //$("#SQJSsidebarContent").load(sidebarURL+"?rrnd="+ gfSQJZrnd(50000, 99999));
     gfSQJZLoad("SQJSsidebarContent", sidebarURL+"?rrnd="+ gfSQJZrnd(50000, 99999))
    
     document.body.addEventListener("click", function() {
-      SQJS.sidebarClose();
+      SQJS.sidebarBodyOnClick();
     });
 
 	}	

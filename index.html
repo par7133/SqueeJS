@@ -61,7 +61,7 @@
 <div style="color:green;font-size:35px;font-weight:900;">Download:</div>
 <br>
 <div style="color:darkcyan;font-size:35px;font-weight:900;">
-<a href="/squeejs-1.0.9.tar.gz">tar.gz</a>&nbsp;&nbsp;<a href="/squeejs-1.0.9.zip">zip</a>
+<a href="/squeejs-1.1.1.tar.gz">tar.gz</a>&nbsp;&nbsp;<a href="/squeejs-1.1.1.zip">zip</a>
 </div>
 
 <br><br>
@@ -113,13 +113,7 @@ Please check the <b>context</b> of implementation for each of the functions.<br>
   
 function setFooterPos() {
   if (document.getElementById("footerCont")) {
-    
-    //if ($("#Password").val() === "") {  
-    //    tollerance = 48;
-    //  } else {
-    //  tollerance = 15;
-    //}
-    tollerance = 12;  	  
+    tollerance = -112;  	  
     footerContHeight = 35;
     footerHeight = 32;
     document.getElementById("footerCont").style.top = parseInt( getDocHeight2() - footerContHeight - tollerance ) + "px";
@@ -128,12 +122,6 @@ function setFooterPos() {
 }
 setFooterPos();
 
-window.addEventListener("load", function() {
-    
-  setTimeout("setFooterPos()", 1500);
-  
-}, true);
-  
 </script>  
 
 <!-- Yandex.Metrika counter -->

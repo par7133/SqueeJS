@@ -75,7 +75,7 @@ var myNewUserTransMenu = SQJS.createUserTrans("/res/trans-menu2.png", "content",
  
 <br><br>
 
-<div id="content" style="height:730px;">  
+<div id="content" style="height:630px;">  
   
 <br><br>
 
@@ -86,7 +86,7 @@ var myNewUserTransMenu = SQJS.createUserTrans("/res/trans-menu2.png", "content",
   /**
    * SQJS.createUserTrans
    * 
-   * create the tag DIV of user trans icon and user trans menu
+   * Create the tag DIV of user trans icon and user trans menu
    * 
    * Context:
    * - Call it in the body of your webpage 
@@ -130,7 +130,7 @@ var myNewUserTransMenu = SQJS.createUserTrans("/res/trans-menu2.png", "content",
   
 function setFooterPos() {
   if (document.getElementById("footerCont")) {
-    tollerance = 12;  	  
+    tollerance = -112;  	  
     footerContHeight = 35;
     footerHeight = 32;
     document.getElementById("footerCont").style.top = parseInt( getDocHeight2() - footerContHeight - tollerance ) + "px";
@@ -139,12 +139,6 @@ function setFooterPos() {
 }
 setFooterPos();
 
-window.addEventListener("load", function() {
-    
-  setTimeout("setFooterPos()", 1500);
-  
-}, true);
-  
 </script>  
 
 <!-- Yandex.Metrika counter -->

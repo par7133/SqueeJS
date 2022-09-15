@@ -136,12 +136,6 @@ Please check the <b>context</b> of implementation for each of the functions.<br>
   
 function setFooterPos() {
   if (document.getElementById("footerCont")) {
-    
-    //if ($("#Password").val() === "") {  
-    //    tollerance = 48;
-    //  } else {
-    //  tollerance = 15;
-    //}
     tollerance = 12;  	  
     footerContHeight = 35;
     footerHeight = 32;
@@ -149,13 +143,13 @@ function setFooterPos() {
     document.getElementById("footer").style.top = parseInt( getDocHeight2() - footerHeight - tollerance) + "px";
   }
 }
-setFooterPos();
+//setFooterPos();
 
 window.addEventListener("load", function() {
     
   SQJS.initAppWithSplash("content", "SqueeJS", "/res/logo.png", "#FFFFFF", 2500);
   
-  setTimeout("setFooterPos()", 6500);
+  setTimeout("setFooterPos()", 3500);
   
 }, true);
   

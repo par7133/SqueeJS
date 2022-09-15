@@ -54,6 +54,12 @@
 </head>
 <body style="border:0px solid lightgray; padding:20px; margin-right:20px;">
 
+<script>
+var myNewSidebar = SQJS.createSidebar("/mysidebar.html", "content", 300, window.innerHeight);
+</script>  
+  
+<div id="content" style="float:left;height:800px;width:100%">   
+  
 <a href="/"><img src="/res/logo.png" style="width:300px;background:#FFFFFF;border:1px solid gray;"></a><br>
 
 <br><br><br>
@@ -68,14 +74,7 @@ Please check the <b>context</b> of implementation for each of the functions.<br>
 
 <h2>Example:</h2>
 See the tip coming out from the left side of the screen.
-<script>
-var myNewSidebar = SQJS.createSidebar("https://squeejs.com/mysidebar.html", "content", 300, window.innerHeight);
-</script>
  
-<br>
-
-<div id="content" style="height:430px;">  
-  
 <br><br>
 
 <h2>Code:</h2>  
@@ -98,7 +97,7 @@ var myNewSidebar = SQJS.createSidebar("https://squeejs.com/mysidebar.html", "con
    * 
    * This function is part of SqueeJS.
    */
-  <b>function  SQJS.createSidebar(sidebarURL, contentContId, width, height){};</b>
+  <b>function SQJS.createSidebar(sidebarURL, contentContId, width, height){};</b>
 
 </pre>  
 
@@ -118,7 +117,7 @@ var myNewSidebar = SQJS.createSidebar("https://squeejs.com/mysidebar.html", "con
 <br><br>
 </div>
 
-<div class="footer" style="float:right">
+<div class="footer" style="float:right;">
 <div id="footerCont">&nbsp;</div>
 <div id="footer"><span style="background:#FFFFFF;color:black;opacity:1.0;margin-right:10px;">&nbsp;&nbsp;<a href="dd.html">Disclaimer</a>&nbsp;&nbsp;A <a href="http://5mode.com">5 Mode</a> project and <a href="http://demo.5mode.com">WYSIWYG</a> system. MIT License.</span></div>	
 </div>	
@@ -138,12 +137,6 @@ function setFooterPos() {
 }
 setFooterPos();
 
-window.addEventListener("load", function() {
-    
-  setTimeout("setFooterPos()", 1500);
-  
-}, true);
-  
 </script>  
 
 <!-- Yandex.Metrika counter -->
