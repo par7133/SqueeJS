@@ -24,7 +24,7 @@
  * 
  * Squeejs production release.
  *
- * @version 1.1.1
+ * @version 1.1.2
  * @author Daniele Bonini <my25mb@aol.com>
  * @copyrights (c) 2016, 2024, 5 Mode
  * @license https://opensource.org/licenses/MIT 
@@ -156,6 +156,71 @@ function SqueeJS() {
         D.body.offsetWidth, D.documentElement.offsetWidth,
         D.body.clientWidth, D.documentElement.clientWidth
     );
+  }
+
+  /**
+   * gfSQJZgetAttrById
+   * 
+   * Get the value of the given element attribute
+   * 
+   * @param {string} id, the id selector of the document element
+   * @param {string} attributeName, the attribute to retrieve
+   * @returns {string} the attribute value
+   */
+  function gfSQJZgetAttrById(id, attributeName) {
+    if (document.getElementById(id)) {
+      return document.getElementById(id).getAttribute(attributeName);
+    } else {
+      return "";
+    }
+  }
+
+  /**
+   * gfSQJZsetAttrById
+   * 
+   * Set the value of the given element attribute
+   * 
+   * @param {string} id, the id selector of the document element
+   * @param {string} attributeName, the attribute to retrieve
+   * @param {string} value, the new attribute value
+   * @returns {string} the attribute value
+   */
+  function gfSQJZsetAttrById(id, attributeName, value) {
+    if (document.getElementById(id)) {
+      document.getElementById(id).setAttribute(attributeName, value);
+    }
+  }
+
+  /**
+   * gfSQJZgetCSSById
+   * 
+   * Get the value for the given element style property
+   * 
+   * @param {string} id, the id selector of the document element
+   * @param {string} cssName, the css property to retrieve
+   * @returns {string} the property value
+   */
+  function gfSQJZgetCSSById(id, cssName) {
+    if (document.getElementById(id)) {
+      return document.getElementById(id).style[cssName];
+    } else {
+      return "";
+    }
+  }
+
+  /**
+   * gfSQJZsetCSSById
+   * 
+   * Set the value for the given element style property
+   * 
+   * @param {string} id, the id selector of the document element
+   * @param {string} cssName, the css property to retrieve
+   * @returns {string} the property value
+   */
+  function gfSQJZsetCSSById(id, cssName, value) {
+    if (document.getElementById(id)) {
+      document.getElementById(id).style[cssName] = value;
+    }
   }
 
   /**
@@ -504,13 +569,16 @@ function SqueeJS() {
     //alert("hello");
 
     //Splash
-    if (document.getElementById("SQJSsplash")) {
-      document.getElementById("SQJSsplash").style.display = "none";
-    }  
+    //if (document.getElementById("SQJSsplash")) {
+    //  document.getElementById("SQJSsplash").style.display = "none";
+    //}  
+    gfSQJZsetCSSById("SQJSsplash", "display", "none");
 
     //Main Container
-    document.getElementById(this.splashMainContainerId).style.height = this.splashMainContainerOriHeight;
-    document.getElementById(this.splashMainContainerId).style.display = "inline";
+    //document.getElementById(this.splashMainContainerId).style.height = this.splashMainContainerOriHeight;
+    gfSQJZsetCSSById(this.splashMainContainerId, "height", this.splashMainContainerOriHeight);
+    //document.getElementById(this.splashMainContainerId).style.display = "inline";
+    gfSQJZsetCSSById(this.splashMainContainerId, "display", "inline");
 
     window.scrollTo(0,0);
 
@@ -564,17 +632,20 @@ function SqueeJS() {
     }  
 
     //Main Container
-    document.getElementById(this.splashMainContainerId).style.display = "none";
-
+    //document.getElementById(this.splashMainContainerId).style.display = "none";
+    gfSQJZsetCSSById(this.splashMainContainerId, "display", "none");
+    
     //Splash
     this.createSplash();
     document.getElementById("SQJSsplash").style.display = "inline";
 
     //window.scrollTo(1,1);
     document.body.style.height = parseInt(window.innerHeight) + "px";
-    this.splashMainContainerOriHeight = document.getElementById(this.splashMainContainerId).style.height;
-    document.getElementById(this.splashMainContainerId).style.height = parseInt(window.innerHeight) + "px";
-
+    //this.splashMainContainerOriHeight = document.getElementById(this.splashMainContainerId).style.height;
+    this.splashMainContainerOriHeight = gfSQJZgetCSSById(this.splashMainContainerId, "height");
+    //document.getElementById(this.splashMainContainerId).style.height = parseInt(window.innerHeight) + "px";
+    gfSQJZsetCSSById(this.splashMainContainerId, "height", parseInt(window.innerHeight) + "px");
+    
     setTimeout("SQJS.splashStartApp()", this.splashTimeout);
 
   }
@@ -597,7 +668,8 @@ function SqueeJS() {
     this.splashMainContainerId = mainContainerId;
 
     //Main Container
-    document.getElementById(this.splashMainContainerId).style.display = "inline";
+    //document.getElementById(this.splashMainContainerId).style.display = "inline";
+    gfSQJZsetCSSById(this.splashMainContainerId, "display", "inline");
 
     //Splash
     //document.getElementById("SQJSsplash").style.display = "none";
@@ -665,14 +737,17 @@ function SqueeJS() {
   function myWIPStartApp() {
 
     //Splash
-    if (document.getElementById("SQJSWIP")) {
-      document.getElementById("SQJSWIP").style.display = "none";
-    }  
+    //if (document.getElementById("SQJSWIP")) {
+    //  document.getElementById("SQJSWIP").style.display = "none";
+    //}
+    gfSQJZsetCSSById("SQJSWIP", "display", "none");
 
     //Main Container
-    document.getElementById(this.wipMainContainerId).style.height = this.wipMainContainerOriHeight;
-    document.getElementById(this.wipMainContainerId).style.display = "inline";
-
+    //document.getElementById(this.wipMainContainerId).style.height = this.wipMainContainerOriHeight;
+    gfSQJZsetCSSById(this.wipMainContainerId, "height", this.wipMainContainerOriHeight);
+    //document.getElementById(this.wipMainContainerId).style.display = "inline";
+    gfSQJZsetCSSById(this.wipMainContainerId, "display", "inline");
+    
     window.scrollTo(0,0);
 
   }			
@@ -717,7 +792,8 @@ function SqueeJS() {
     this.wipBG = BG;
 
     //Main Container
-    document.getElementById(this.wipMainContainerId).style.display = "none";
+    //document.getElementById(this.wipMainContainerId).style.display = "none";
+    gfSQJZsetCSSById(this.wipMainContainerId, "display", "none");
 
     //Banner
     _createWIP();
@@ -725,9 +801,10 @@ function SqueeJS() {
 
     //window.scrollTo(1,1);
     document.body.style.height = parseInt(window.innerHeight) + "px";
-    this.wipMainContainerOriHeight = document.getElementById(this.wipMainContainerId).style.height;
-    document.getElementById(this.wipMainContainerId).style.height = parseInt(window.innerHeight) + "px";
-
+    //this.wipMainContainerOriHeight = document.getElementById(this.wipMainContainerId).style.height;
+    this.wipMainContainerOriHeight = gfSQJZgetCSSById(this.wipMainContainerId, "height");
+    //document.getElementById(this.wipMainContainerId).style.height = parseInt(window.innerHeight) + "px";
+    gfSQJZsetCSSById(this.wipMainContainerId, "height", parseInt(window.innerHeight) + "px");
   }
 
   /**
@@ -748,8 +825,9 @@ function SqueeJS() {
     this.wipMainContainerId = mainContainerId;
 
     //Main Container
-    document.getElementById(this.wipMainContainerId).style.display = "inline";
-
+    //document.getElementById(this.wipMainContainerId).style.display = "inline";
+    gfSQJZsetCSSById(this.wipMainContainerId, "display", "inline");
+    
     //Splash
     //document.getElementById("SQJSWIP").style.display = "none";
 
@@ -985,13 +1063,17 @@ function SqueeJS() {
     if (!this.appmenuVisible) {
       document.getElementById("SQJSappMenu").style.display = "inline";
       document.getElementById("SQJSappMenu").style.zIndex = "99998";
-      document.getElementById(this.appmenuContentContId).style.zIndex = "99997";
-      document.getElementById(this.appmenuContentContId ).style.opacity = "0.3";
+      //document.getElementById(this.appmenuContentContId).style.zIndex = "99997";
+      gfSQJZsetCSSById(this.appmenuContentContId, "zIndex", "99997");
+      //document.getElementById(this.appmenuContentContId ).style.opacity = "0.3";
+      gfSQJZsetCSSById(this.appmenuContentContId, "opacity", "0.3");
     } else {
       document.getElementById("SQJSappMenu").style.display = "none";
       document.getElementById("SQJSappMenu").style.zIndex = "99992";  
-      document.getElementById(this.appmenuContentContId).style.zIndex = "99993";
-      document.getElementById(this.appmenuContentContId).style.opacity = "1.0";
+      //document.getElementById(this.appmenuContentContId).style.zIndex = "99993";
+      gfSQJZsetCSSById(this.appmenuContentContId, "zIndex", "99993");
+      //document.getElementById(this.appmenuContentContId).style.opacity = "1.0";
+      gfSQJZsetCSSById(this.appmenuContentContId, "opacity", "1.0");
     }
     this.appmenuVisible=!this.appmenuVisible;
   } 
@@ -1011,7 +1093,8 @@ function SqueeJS() {
   function myappmenuHide() {
     document.getElementById("SQJSappMenu").style.display = "none";
     this.appmenuVisible=false;
-    document.getElementById(this.appmenuContentContId).style.opacity = "1.0";
+    //document.getElementById(this.appmenuContentContId).style.opacity = "1.0";
+    gfSQJZsetCSSById(this.appmenuContentContId, "opacity", "1.0");
   } 
 
   /**
@@ -1205,7 +1288,8 @@ function SqueeJS() {
     //alert("debug#2"+this.geoLocation);
     if (this.geoLocation) {
       if (geoloc.toLowerCase() === this.geoLocation.toLowerCase()) {
-        document.getElementById(id).style.display="none";
+        //document.getElementById(id).style.display="none";
+        gfSQJZsetCSSById(id, "display", "none");
       }
     }  
   }
@@ -1229,7 +1313,8 @@ function SqueeJS() {
     //alert("debug#3"+this.geoLocation);
     if (this.geoLocation) {
       if (geoloc.toLowerCase() === this.geoLocation.toLowerCase()) {
-        document.getElementById(id).style.display="inline";
+        //document.getElementById(id).style.display="inline";
+        gfSQJZsetCSSById(id, "display", "inline");
       }
     } 
   }
@@ -1257,12 +1342,16 @@ function SqueeJS() {
       document.getElementById("SQJSuserTransMenu").style.display = "inline";
       document.getElementById("SQJSuserTransMenu").style.zIndex = "99998";
       document.getElementById(this.usertransContentContId).style.zIndex = "99997";
-      document.getElementById(this.usertransContentContId ).style.opacity = "0.3";
+      gfSQJZsetCSSById(this.usertransContentContId, "zIndex", "99997");
+      //document.getElementById(this.usertransContentContId ).style.opacity = "0.3";
+      gfSQJZsetCSSById(this.usertransContentContId, "opacity", "0.3");
     } else {
       document.getElementById("SQJSuserTransMenu").style.display = "none";
       document.getElementById("SQJSuserTransMenu").style.zIndex = "99992";  
-      document.getElementById(this.usertransContentContId).style.zIndex = "99993";
-      document.getElementById(this.usertransContentContId).style.opacity = "1.0";
+      //document.getElementById(this.usertransContentContId).style.zIndex = "99993";
+      gfSQJZsetCSSById(this.usertransContentContId, "zIndex", "99993");
+      //document.getElementById(this.usertransContentContId).style.opacity = "1.0";
+      gfSQJZsetCSSById(this.usertransContentContId, "opacity", "1.0");
     }
     this.usertransVisible=!this.usertransVisible;
   } 
@@ -1280,9 +1369,11 @@ function SqueeJS() {
    * This function is part of SqueeJS.
    */
   function myusertransHide() {
-    document.getElementById("SQJSuserTransMenu").style.display = "none";
+    //document.getElementById("SQJSuserTransMenu").style.display = "none";
+    gfSQJZsetCSSById("SQJSuserTransMenu", "display", "none");
     this.usertransVisible=false;
-    document.getElementById(this.usertransContentContId).style.opacity = "1.0";
+    //document.getElementById(this.usertransContentContId).style.opacity = "1.0";
+    gfSQJZsetCSSById(this.usertransContentContId, "opacity", "1.0");
   } 
 
   /**
@@ -1599,9 +1690,10 @@ function SqueeJS() {
    */
   function mysidebarShow() {
     if (!this.sidebarVisible) {
-      if (document.getElementById(this.sidebarContentContId)) {
-        document.getElementById(this.sidebarContentContId).style.width = "100%";
-      }  
+      //if (document.getElementById(this.sidebarContentContId)) {
+      //  document.getElementById(this.sidebarContentContId).style.width = "100%";
+      //}
+      gfSQJZsetCSSById(this.sidebarContentContId, "width", "100%");
       //$("#SQJSsidebar").show("slow");
       document.getElementById("SQJSsidebar").style.display = "inline";
     }  
@@ -1622,9 +1714,10 @@ function SqueeJS() {
    */
   function mysidebarClose() {
     document.getElementById("SQJSsidebar").style.display = "none";
-    if (document.getElementById(this.sidebarContentContId)) {
-      document.getElementById(this.sidebarContentContId).style.width = "100%";
-    }  
+    //if (document.getElementById(this.sidebarContentContId)) {
+    //  document.getElementById(this.sidebarContentContId).style.width = "100%";
+    //}
+    gfSQJZsetCSSById(this.sidebarContentContId, "width", "100%");
     this.sidebarVisible = false; 
   }
   
