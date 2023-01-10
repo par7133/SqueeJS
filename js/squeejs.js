@@ -33,7 +33,7 @@
 
 function SqueeJS() {
 
-  const SQJS_GEOURL = "https://ss.squeejs.com/";
+  const SQJS_GEOURL = "https://ss.squeejs.5mode-lab.com/";
 
   // Highlight
   this.highlightOriTop=[];
