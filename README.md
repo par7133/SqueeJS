@@ -6,6 +6,6 @@ As SqueeJS has both client side code (code and doc, MIT) and server-side code (g
 
 APPRECIATED: if you want to pass some funny moments you can check my bolognese translation of "user_translation.html". Further more you are welcome to translate it to your local dialect, just remember to send me a copy of it so that we can publish it in favor of everyone's laugh. LOL!
 
-Feedback: posta@elettronica.lol
+Feedback: <a href="mailto:code@gaox.io">code@gaox.io</a>
 
 
