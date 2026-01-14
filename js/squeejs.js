@@ -33,7 +33,7 @@
 
 function SqueeJS() {
 
-  const SQJS_GEOURL = "https://ss.squeejs.5mode-lab.com/";
+  const SQJS_GEOURL = "https://ss.squeejs.numode-lab.eu/";
 
   // Highlight
   this.highlightOriTop=[];
@@ -701,7 +701,7 @@ function SqueeJS() {
     w = gfSQJZDocWidth();
     wipLeft = parseInt((w - 450) / 2);
     h = gfSQJZDocHeight();
-    bannerURI = "//squeejs.com/res/work-in-progress.png";
+    bannerURI = "//squeejs.numode-lab.eu/res/work-in-progress.png";
     BG = this.wipBG;
 
     wip = "";
@@ -1589,7 +1589,7 @@ function SqueeJS() {
     menu = "";
     menu += "<span style='font-size:10px;'>text or link, use ||| to separate source from translation:</span>";
     menu += "<textarea id='SQJSuserTransTB'></textarea><br>";
-    menu += "<button id='SQJSuserTransBUT' onclick='SQJS.translate();'><img src='//squeejs.com/res/trans.png' style='height:70px'></button><br>";
+    menu += "<button id='SQJSuserTransBUT' onclick='SQJS.translate();'><img src='//squeejs.numode-lab.eu/res/trans.png' style='height:70px'></button><br>";
     menu += "<br>";
     
     newdiv=D.createElement("div");
