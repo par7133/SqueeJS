@@ -6,7 +6,7 @@ As SqueeJS has both client side code (code and doc, MIT) and server-side code (g
 
 APPRECIATED: if you want to pass some funny moments you can check my bolognese translation of "user_translation.html". Further more you are welcome to translate it to your local dialect, just remember to send me a copy of it so that we can publish it in favor of everyone's laugh. LOL!
 
-For any need of software additions, plugins and improvements please write to <a href="mailto:info@5mode.com">info@5mode.com</a>  
+For any need of software additions, plugins and improvements please write to <a href="mailto:info@numode.eu">info@numode.eu</a>  
 
 To help please donate by clicking <a href="https://gaox.io/l/dona1">https://gaox.io/l/dona1</a> and filling the form.  
 
